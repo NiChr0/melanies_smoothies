@@ -22,7 +22,7 @@ session = create_session()
 name_on_order = st.text_input("Name on Smoothie")
 st.write("The name on your Smoothie will be:", name_on_order)
 
-my_dataframe = session.table("smoothies.public.fruit_options").select(col('FRUIT_NAME'), col(SEARCH_ON))
+my_dataframe = session.table("smoothies.public.fruit_options").select(col('FRUIT_NAME'), col('SEARCH_ON'))
 pd_df = my_dataframe.to_pandas()
 st.dataframe(pd_df)
 st.stop()
