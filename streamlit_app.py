@@ -10,7 +10,10 @@ st.write(f"Choose the fruits you want in your custom Smoothie!")
 # Create Snowflake session for Streamlit
 @st.cache_resource
 def create_session():
-    return Session.builder.configs(st.secrets["connections"]["snowflake"]).create()
+    session = Session.builder.configs(st.secrets["connections"]["snowflake"]).create()
+    # Explicitly set the warehouse
+    session.sql("USE WAREHOUSE COMPUTE_WH").collect()
+    return session
 
 session = create_session()
 
